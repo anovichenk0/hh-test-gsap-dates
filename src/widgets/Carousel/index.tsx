@@ -42,6 +42,9 @@ const Carousel = () => {
                         onReachEnd={() => {
                             setIsEnd(true)
                         }}
+                        onReachBeginning={() => {
+                            setIsEnd(false)
+                        }}
                         breakpoints={{
                             991.98: {
                                 slidesPerView: 3,
