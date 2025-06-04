@@ -49,7 +49,7 @@ const MagicCircles = (props: Props) => {
                 <MagicCircle
                     parentRotation={rotation}
                     key={index}
-                    order={index + 1}
+                    index={index}
                 />
             ))}
         </div>
@@ -66,9 +66,9 @@ const disableCircles = (el: HTMLElement) => {
 
 const MagicCircle = ({
     parentRotation,
-    order,
+    index,
 }: {
-    order: number
+    index: number
     parentRotation: number
 }) => {
     const { setValue, value } = useSlideContext()
@@ -118,7 +118,7 @@ const MagicCircle = ({
 
     return (
         <div
-            onClick={() => setValue(order - 1)}
+            onClick={() => setValue(index)}
             ref={container}
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
@@ -129,7 +129,7 @@ const MagicCircle = ({
                     ref={buttonRef}
                     className={cn('button', styles.magicDot)}
                 >
-                    {order}
+                    {index + 1}
                 </button>
             </div>
         </div>
