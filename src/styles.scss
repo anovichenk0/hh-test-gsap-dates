@@ -1,2 +1,42 @@
-@import url('./styles/fonts.scss');
-@import url('./styles/layout.scss');
+@use './styles//reset.scss';
+@use './styles/fonts.scss';
+@use './styles/layout.scss';
+@use './styles/design-system.scss';
+@use './styles/base.scss';
+$circle-size: 36rem;
+
+.circle {
+    position: fixed;
+    width: $circle-size;
+    height: $circle-size;
+    border-radius: 100%;
+    border: 1px solid $color-primary;
+    opacity: 0.15;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body {
+    &:after {
+        content: '';
+        width: 1px;
+        height: 100vh;
+        background-color: $color-primary;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        opacity: 0.15;
+    }
+
+    &:before {
+        content: '';
+        height: 1px;
+        width: 100vw;
+        background-color: $color-primary;
+        position: fixed;
+        top: 50%;
+        left: 0;
+        opacity: 0.15;
+    }
+}

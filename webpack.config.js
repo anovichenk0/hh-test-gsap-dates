@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+
 module.exports = {
     entry: "./src/index.tsx",
     output: {
@@ -40,23 +41,58 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: ["style-loader", "css-loader"],
-            },
-            {
-                test: /\.s[ac]ss$/i,
                 use: [
                     'style-loader',
                     {
                         loader: 'css-loader',
                         options: {
-                            url: {
-                                filter: (url) => {
-                                    return !url.startsWith('/');
-                                }
-                            }
+                            url: { filter: url => !url.startsWith('/') },
                         },
                     },
-                    'sass-loader',
+                ],
+            },
+
+            // SCSS с oneOf для модулей и обычных
+            {
+                test: /\.s[ac]ss$/i,
+                oneOf: [
+                    {
+                        test: /\.module\.s[ac]ss$/i,
+                        use: [
+                            'style-loader',
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    modules: true,
+                                    url: { filter: url => !url.startsWith('/') },
+                                },
+                            },
+                            {
+                                loader: 'sass-loader',
+                                options: {
+                                    additionalData: `@use "@/styles/design-system.scss" as *;`
+                                }
+                            },
+                        ],
+                    },
+                    {
+                        exclude: /\.module\.s[ac]ss$/i,
+                        use: [
+                            'style-loader',
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    url: { filter: url => !url.startsWith('/') },
+                                },
+                            },
+                            {
+                                loader: 'sass-loader',
+                                options: {
+                                    additionalData: `@use "@/styles/design-system.scss" as *;`
+                                }
+                            },
+                        ],
+                    },
                 ],
             },
             {

@@ -1,0 +1,23 @@
+.position {
+    position: fixed;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+}
+
+@mixin title($color: $color-accent) {
+    color: $color;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+}
+
+.titleAccent {
+    @include title(); // Использует $color-primary по умолчанию
+}
+
+.titleSecondary {
+    @include title($color-secondary); // Использует другой цвет
+}

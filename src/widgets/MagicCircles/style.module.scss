@@ -1,0 +1,48 @@
+$items-count: 6;
+$radius: 18rem;
+
+.container {
+    height: $radius * 2;
+    width: $radius * 2;
+    position: fixed;
+    inset: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    // background: linear-gradient(to bottom, $color-accent, $color-secondary);
+}
+
+.magicDot {
+    width: 4rem;
+    height: 4rem;
+    padding: 0.1rem;
+    background-color: $color-primary;
+    font-size: 0px;
+    border-radius: 100%;
+    border: 0px solid $color-primary;
+    color: $color-primary;
+    cursor: pointer;
+    // will-change: transform;
+
+    &__container {
+        grid-area: 1 / 1 / 2 / 2;
+        align-items: center;
+        z-index: 10;
+        height: 4rem;
+        width: 4rem;
+        position: relative;
+        margin: 0 auto;
+        cursor: pointer;
+
+        @for $i from 1 through $items-count {
+            &:nth-child(#{$i}) {
+                transform: rotate(($i + 4) * 60 + deg)
+                    translate($radius)
+                    rotate(-($i + 4) * 60 + deg);
+            }
+        }
+    }
+}

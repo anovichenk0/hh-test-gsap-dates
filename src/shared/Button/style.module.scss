@@ -1,0 +1,40 @@
+$button-size: 3rem;
+$button-font-size: 1.5rem;
+$button-bg: transparent;
+$button-color: $color-primary;
+$button-disabled-bg: #ccc;
+$transition: 0.3s;
+
+.button {
+    height: $button-size;
+    width: $button-size;
+    border-radius: 100%;
+    background-color: $button-bg;
+    font-size: $button-font-size;
+    color: $button-color;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color $transition ease;
+
+    &:hover {
+        background-color: #fff;
+    }
+
+    &:disabled {
+        background-color: $button-disabled-bg;
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+}
+
+.outlined {
+    border: 1px solid rgba($color-primary, 0.5);
+    padding: 0.5rem;
+}
+
+.filled {
+    background-color: $color-primary;
+}

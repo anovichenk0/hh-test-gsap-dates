@@ -1,0 +1,32 @@
+// Цвета!
+$color-primary: #42567a;
+$color-accent: #3877ee;
+$color-light: #9dbefd;
+$color-secondary: #da579b;
+$color-background: #dfe0e4;
+
+// Типография!
+$font-family-base: 'PTSans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-size-base: 1rem;
+$font-size-lg: 56px;
+$font-size-xl: 200px;
+$line-height-base: 1.5;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// Отступы!
+$spacing-unit: 8px;
+$spacing-xs: $spacing-unit; // 8px
+$spacing-sm: $spacing-unit * 2; // 16px
+$spacing-md: $spacing-unit * 3; // 24px
+$spacing-lg: $spacing-unit * 4; // 32px
+$spacing-xl: $spacing-unit * 6; // 48px
+
+// Радиусы!
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+
+// Тени!
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);

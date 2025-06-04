@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    gap: 4rem;
+}
+
+.title {
+    color: $color-primary;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+}
+
+.label {
+    width: 8px;
+    background: linear-gradient(to bottom, $color-accent, $color-secondary);
+}
