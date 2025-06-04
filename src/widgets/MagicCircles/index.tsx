@@ -58,8 +58,8 @@ const MagicCircles = (props: Props) => {
 
 const disableCircles = (el: HTMLElement) => {
     gsap.to(el, {
-        scaleX: '20%',
-        scaleY: '20%',
+        scaleX: '10%',
+        scaleY: '10%',
         background: '#42567a',
     })
 }

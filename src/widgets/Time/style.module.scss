@@ -1,7 +1,7 @@
 .position {
     position: fixed;
     width: 100%;
-    top: 50%;
+    top: $circle-top;
     transform: translateY(-50%);
     display: flex;
     justify-content: center;

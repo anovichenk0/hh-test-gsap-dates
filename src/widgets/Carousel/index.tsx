@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import * as styles from './style.module.scss'
 import { data } from '@/data'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -7,7 +7,8 @@ import Button from '@/shared/Button'
 import { ArrowLeft, ArrowRight } from '@/shared/Icons'
 import { useSlideContext } from '@/store'
 import { SLIDES_COUNT } from '@/shared/settings'
-
+import { gsap } from 'gsap/gsap-core'
+import { useGSAP } from '@gsap/react'
 const Carousel = () => {
     const { value } = useSlideContext()
     const currentData = data.at(value)
@@ -19,9 +20,10 @@ const Carousel = () => {
                 {currentData?.news.map((item) => (
                     <SwiperSlide>
                         <Item
-                            date={'2000'}
+                            key={item.description}
+                            date={item.year}
                             description={item.description}
-                        ></Item>
+                        />
                     </SwiperSlide>
                 ))}
             </Swiper>
@@ -58,8 +60,31 @@ const Controls = () => {
 }
 
 const Item = (props: { date: string; description: string }) => {
+    const ref = useRef(null)
+
+    useGSAP(() => {
+        gsap.fromTo(
+            ref.current,
+            { opacity: 0, y: 10 },
+            { opacity: 1, y: 0, duration: 1.5, ease: 'power2.out' }
+        )
+    }, [])
+
+    useGSAP(() => {
+        return gsap.fromTo(
+            ref.current,
+            { opacity: 1, y: 0 },
+            {
+                opacity: 0,
+                y: 10,
+                duration: 0.1,
+                ease: 'power2.in',
+            }
+        )
+    }, [])
+
     return (
-        <div className={styles.item}>
+        <div ref={ref} className={styles.item}>
             <h3 className={styles.item__year}>{props.date}</h3>
             <p className={styles.item__description}>{props.description}</p>
         </div>

@@ -1,11 +1,15 @@
+@use '@/styles/design-system.scss' as *;
+@use 'sass:math';
+
 $items-count: 6;
-$radius: 18rem;
+$radius: math.div($circle-size, 2);
 
 .container {
     height: $radius * 2;
     width: $radius * 2;
     position: fixed;
-    inset: 50%;
+    top: $circle-top;
+    left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
     display: grid;
