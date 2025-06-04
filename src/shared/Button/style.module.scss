@@ -36,5 +36,7 @@ $transition: 0.3s;
 }
 
 .filled {
-    background-color: $color-primary;
+    background-color: #fff;
+    color: $color-accent;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }

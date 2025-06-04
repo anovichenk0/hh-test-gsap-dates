@@ -17,11 +17,22 @@
     &__container {
         margin: 0 -1rem !important;
         flex: 1;
-        mask-image: linear-gradient(to left, transparent 0%, black 10%);
 
         @media (max-width: $break-point-md) {
             padding-bottom: 0;
+            mask-image: linear-gradient(to left, transparent 0%, black 10%);
         }
+
+        @media (min-width: $break-point-md) {
+            display: flex;
+            gap: 2rem;
+        }
+    }
+}
+
+.swipebutton {
+    @media (max-width: $break-point-md) {
+        display: none !important;
     }
 }
 

@@ -15,11 +15,12 @@ $radius: math.div($circle-size, 2);
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     align-items: center;
+    display: grid;
     // background: linear-gradient(to bottom, $color-accent, $color-secondary);
 
-    display: none;
+    visibility: hidden;
     @media (min-width: $break-point-md) {
-        display: grid;
+        visibility: inherit;
     }
 }
 

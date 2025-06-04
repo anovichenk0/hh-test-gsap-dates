@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import * as styles from './style.module.scss'
 import { data } from '@/data'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperClass, SwiperRef, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import Button from '@/shared/Button'
 import { ArrowLeft, ArrowRight } from '@/shared/Icons'
@@ -9,9 +9,20 @@ import { useSlideContext } from '@/store'
 import { SLIDES_COUNT } from '@/shared/settings'
 import { gsap } from 'gsap/gsap-core'
 import { useGSAP } from '@gsap/react'
+import SwiperCore from 'swiper'
 const Carousel = () => {
     const { value } = useSlideContext()
     const currentData = data.at(value)
+    const swiperRef = useRef<SwiperCore>(null)
+    const [isEnd, setIsEnd] = useState(false)
+
+    useEffect(() => {
+        if (swiperRef.current) {
+            console.log(swiperRef.current)
+            swiperRef.current.slideTo(0)
+        }
+    }, [value])
+
     return (
         <div className={styles.container}>
             <div className={styles.controls__container}>
@@ -22,6 +33,15 @@ const Carousel = () => {
                 <Description></Description>
                 <div className={styles.swiper__container}>
                     <Swiper
+                        onSlideChange={(swiper) => {
+                            setIsEnd(swiper.isEnd)
+                        }}
+                        onSwiper={(swiper) => {
+                            swiperRef.current = swiper
+                        }}
+                        onReachEnd={() => {
+                            setIsEnd(true)
+                        }}
                         breakpoints={{
                             991.98: {
                                 slidesPerView: 3,
@@ -44,6 +64,9 @@ const Carousel = () => {
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    <div>
+                        <SwipeButton isEnd={isEnd} swiper={swiperRef} />
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,6 +95,27 @@ const Total = () => {
                 {SLIDES_COUNT.toString().padStart(2, '0')}
             </span>
         </div>
+    )
+}
+
+const SwipeButton = ({
+    swiper,
+    isEnd,
+}: {
+    swiper: React.RefObject<SwiperCore | null>
+    isEnd: boolean
+}) => {
+    return (
+        <Button
+            className={styles.swipebutton}
+            disabled={isEnd}
+            variant="filled"
+            onClick={() => {
+                swiper?.current?.slideNext()
+            }}
+        >
+            <ArrowRight />
+        </Button>
     )
 }
 
