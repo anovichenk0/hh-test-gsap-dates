@@ -3,7 +3,7 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100dvh;
     padding: 4rem 0rem 2rem 0rem;
 
     @media (min-width: $break-point-md) {

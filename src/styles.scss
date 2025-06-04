@@ -25,7 +25,7 @@ body {
     &:after {
         content: '';
         width: 1px;
-        height: 100vh;
+        height: 100dvh;
         background-color: $color-primary;
         position: fixed;
         top: 0;
@@ -57,7 +57,7 @@ body {
 
 @mixin container-line {
     width: 1px;
-    height: 100vh;
+    height: 100dvh;
     background-color: $color-primary;
     position: absolute;
     opacity: 0.15;
