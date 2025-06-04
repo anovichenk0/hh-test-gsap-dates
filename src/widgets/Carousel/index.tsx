@@ -14,19 +14,50 @@ const Carousel = () => {
     const currentData = data.at(value)
     return (
         <div className={styles.container}>
-            <Total></Total>
-            <Controls></Controls>
-            <Swiper slidesPerView={3} spaceBetween={50}>
-                {currentData?.news.map((item) => (
-                    <SwiperSlide>
-                        <Item
-                            key={item.description}
-                            date={item.year}
-                            description={item.description}
-                        />
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+            <div className={styles.controls__container}>
+                <Total></Total>
+                <Controls></Controls>
+            </div>
+            <div>
+                <Description></Description>
+                <div className={styles.swiper__container}>
+                    <Swiper
+                        breakpoints={{
+                            991.98: {
+                                slidesPerView: 3,
+                            },
+                        }}
+                        // slideClass={styles.swiper__slide}
+                        slidesOffsetBefore={16}
+                        // className={styles.swiper}
+                        slidesPerView={1.5}
+                        spaceBetween={50}
+                        slidesOffsetAfter={16}
+                    >
+                        {currentData?.news.map((item) => (
+                            <SwiperSlide>
+                                <Item
+                                    key={item.description}
+                                    date={item.year.toString()}
+                                    description={item.description}
+                                />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const Description = () => {
+    const { value } = useSlideContext()
+    const label = data.at(value)?.label
+
+    return (
+        <div className={styles.description}>
+            <h3>{label}</h3>
+            <hr />
         </div>
     )
 }

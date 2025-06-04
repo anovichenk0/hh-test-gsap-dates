@@ -12,11 +12,15 @@ $radius: math.div($circle-size, 2);
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     align-items: center;
     // background: linear-gradient(to bottom, $color-accent, $color-secondary);
+
+    display: none;
+    @media (min-width: $break-point-md) {
+        display: grid;
+    }
 }
 
 .magicDot {
@@ -29,7 +33,7 @@ $radius: math.div($circle-size, 2);
     border: 0px solid $color-primary;
     color: $color-primary;
     cursor: pointer;
-    // will-change: transform;
+    position: relative;
 
     &__container {
         grid-area: 1 / 1 / 2 / 2;
@@ -48,5 +52,15 @@ $radius: math.div($circle-size, 2);
                     rotate(-($i + 4) * 60 + deg);
             }
         }
+    }
+
+    &__label {
+        position: absolute;
+        top: 50%;
+        left: 120%;
+        translate: 0 -50%;
+        font-weight: $font-weight-bold;
+        color: $color-primary;
+        opacity: 0;
     }
 }

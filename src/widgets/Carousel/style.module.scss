@@ -1,10 +1,34 @@
 .container {
-    padding: 23rem 0 0 0;
+    padding: 4rem 0 0 0;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3rem;
+    @media (min-width: $break-point-md) {
+        flex-direction: column;
+    }
+}
+
+.swiper {
+    &__slide {
+        width: 200px;
+        // margin: 0 1rem 0 1rem;
+    }
+
+    &__container {
+        margin: 0 -1rem !important;
+        flex: 1;
+        mask-image: linear-gradient(to left, transparent 0%, black 10%);
+
+        @media (max-width: $break-point-md) {
+            padding-bottom: 0;
+        }
+    }
 }
 
 .item {
     display: flex;
     flex-direction: column;
+    align-items: start;
     gap: 1rem;
     will-change: opacity, transform;
 
@@ -31,5 +55,43 @@
 .controls {
     display: flex;
     gap: 1rem;
-    padding-bottom: 3.4rem;
+
+    @media (max-width: $break-point-xs) {
+        padding-bottom: 0;
+    }
+
+    & > button {
+        @media (max-width: $break-point-xs) {
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
+}
+
+.description {
+    padding-bottom: 1.5rem;
+
+    & > h3 {
+        color: $color-primary;
+        font-weight: $font-weight-bold;
+    }
+
+    & > hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+
+    @media (min-width: $break-point-md) {
+        display: none;
+    }
 }

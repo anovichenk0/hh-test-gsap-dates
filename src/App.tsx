@@ -8,6 +8,10 @@ import MagicCircles from './widgets/MagicCircles'
 const App = () => {
     return (
         <SlideProvider>
+            <div className="container">
+                <div className="left-line"></div>
+                <div className="right-line"></div>
+            </div>
             <div className="wrapper">
                 <div className="container">
                     <div className="circle"></div>

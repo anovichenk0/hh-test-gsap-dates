@@ -5,12 +5,21 @@
 
 .title {
     color: $color-primary;
-    font-size: $font-size-lg;
+    font-size: 1.5rem;
     font-weight: $font-weight-bold;
     line-height: 1.2;
+
+    @media (min-width: $break-point-sm) {
+        font-size: $font-size-lg;
+    }
 }
 
 .label {
     width: 5px;
     background: linear-gradient(to bottom, $color-accent, $color-secondary);
+    display: none;
+
+    @media (min-width: $break-point-sm) {
+        display: block;
+    }
 }

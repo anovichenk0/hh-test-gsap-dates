@@ -7,11 +7,12 @@ import { SLIDES_COUNT } from '@/shared/settings'
 import * as styles from './style.module.scss'
 import cn from 'classnames'
 import { useSlideContext } from '@/store'
+import { data } from '@/data'
 
 gsap.registerPlugin(useGSAP)
 
 type Props = {}
-const MagicCircles = (props: Props) => {
+const MagicCircles = () => {
     const { value } = useSlideContext()
     const [savedValue, setSavedValue] = useState(value)
     const circle = useRef(null)
@@ -75,7 +76,10 @@ const MagicCircle = ({
     const container = useRef(null)
     const buttonRef = useRef(null)
     const antiRotation = useRef(null)
+    const labelRef = useRef(null)
     const timelineRef = useRef<gsap.core.Timeline>(null)
+    const label = data.at(index)?.label
+    const circleDuration = 0.4
 
     useEffect(() => {
         gsap.to(antiRotation.current, {
@@ -88,10 +92,6 @@ const MagicCircle = ({
         timelineRef.current = tl
 
         const el = buttonRef.current!
-        if (!el) {
-            return
-        }
-
         disableCircles(el)
 
         tl.to(el, {
@@ -99,7 +99,7 @@ const MagicCircle = ({
             scaleY: '100%',
             border: '1px solid #42567a',
             background: '#fff',
-            duration: 0.4,
+            duration: circleDuration,
             delay: 0,
             ease: 'sine.in',
         })
@@ -116,6 +116,36 @@ const MagicCircle = ({
         disableCircles(buttonRef.current!)
     }
 
+    const active = value === index
+
+    if (!active) {
+        gsap.to(labelRef.current, {
+            opacity: 0,
+        })
+    }
+    useGSAP(() => {
+        gsap.killTweensOf(labelRef.current)
+        if (active) {
+            console.log('active', value)
+            gsap.fromTo(
+                labelRef.current,
+                {
+                    opacity: 0,
+                },
+                {
+                    delay: circleDuration,
+                    duration: 1.5,
+                    opacity: 1,
+                }
+            )
+        } else {
+            console.log('disable', value)
+            gsap.to(labelRef.current, {
+                opacity: 0,
+            })
+        }
+    }, [active])
+
     return (
         <div
             onClick={() => setValue(index)}
@@ -131,6 +161,9 @@ const MagicCircle = ({
                 >
                     {index + 1}
                 </button>
+                <div ref={labelRef} className={styles.magicDot__label}>
+                    {label}
+                </div>
             </div>
         </div>
     )

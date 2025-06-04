@@ -1,37 +1,49 @@
+@use './design-system.scss' as *;
+
 .wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding: 4rem 0rem 2rem 0rem;
+
+    @media (min-width: $break-point-md) {
+        padding: 5rem 0rem 6rem 0rem;
+    }
+
+    @media (min-width: $break-point-lg) {
+        padding: 8rem 0rem 6rem 0rem;
+    }
 }
 
 .container {
     width: 100%;
     margin: 0 auto;
     position: relative;
+    padding: 0 1rem;
 
-    @media (min-width: 575.98px) {
+    @media (min-width: $break-point-xs) {
         max-width: 540px;
-        padding: 0;
     }
 
-    @media (min-width: 767.98px) {
+    @media (min-width: $break-point-sm) {
         max-width: 720px;
     }
 
-    @media (min-width: 991.98px) {
-        padding-top: 10rem;
+    @media (min-width: $break-point-md) {
         max-width: 960px;
     }
 
-    @media (min-width: 1199.98px) {
+    @media (min-width: $break-point-lg) {
         max-width: 1140px;
     }
 
-    @media (min-width: 1499.98px) {
+    @media (min-width: $break-point-xl) {
         max-width: 1440px;
     }
 }
 
 .space {
-    padding: 0 5rem;
+    @media (min-width: $break-point-sm) {
+        padding: 0 5rem;
+    }
 }

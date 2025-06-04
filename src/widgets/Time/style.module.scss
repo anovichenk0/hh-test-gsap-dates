@@ -1,17 +1,35 @@
 .position {
-    position: fixed;
-    width: 100%;
-    top: $circle-top;
-    transform: translateY(-50%);
     display: flex;
     justify-content: center;
-    gap: 5rem;
+    gap: 2rem;
+    padding-top: 4rem;
+
+    @media (min-width: $break-point-md) {
+        gap: 5rem;
+        position: fixed;
+        width: 100%;
+        top: $circle-top;
+        transform: translateY(-70%);
+    }
+}
+
+.container {
+    flex: 1;
 }
 
 @mixin title($color: $color-accent) {
     color: $color;
-    font-size: $font-size-xl;
+    font-size: $font-size-lg;
+    // font-size: clamp(2vw, 100%, $font-size-lg);
     font-weight: $font-weight-bold;
+
+    @media (min-width: $break-point-xs) {
+        font-size: clamp($font-size-lg, calc(1rem + 14vw), $font-size-xl);
+    }
+
+    @media (min-width: $break-point-md) {
+        font-size: $font-size-xl;
+    }
 }
 
 .titleAccent {

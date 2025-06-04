@@ -32,9 +32,11 @@ const Time = () => {
     }, [currentData])
 
     return (
-        <div className={styles.position}>
-            <span className={styles.titleAccent}>{startYear}</span>
-            <span className={styles.titleSecondary}>{endYear}</span>
+        <div className={styles.container}>
+            <div className={styles.position}>
+                <span className={styles.titleAccent}>{startYear}</span>
+                <span className={styles.titleSecondary}>{endYear}</span>
+            </div>
         </div>
     )
 }

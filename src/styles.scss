@@ -14,6 +14,11 @@
     top: $circle-top;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    display: none;
+    @media (min-width: $break-point-md) {
+        display: block;
+    }
 }
 
 body {
@@ -26,6 +31,11 @@ body {
         top: 0;
         left: 50%;
         opacity: 0.15;
+
+        display: none;
+        @media (min-width: $break-point-md) {
+            display: block;
+        }
     }
 
     &:before {
@@ -37,5 +47,40 @@ body {
         top: $circle-top;
         left: 0;
         opacity: 0.15;
+
+        display: none;
+        @media (min-width: $break-point-md) {
+            display: block;
+        }
+    }
+}
+
+@mixin container-line {
+    width: 1px;
+    height: 100vh;
+    background-color: $color-primary;
+    position: absolute;
+    opacity: 0.15;
+}
+
+.left-line {
+    @include container-line;
+    left: 1rem;
+    top: 0;
+
+    display: none;
+    @media (min-width: $break-point-md) {
+        display: block;
+    }
+}
+
+.right-line {
+    @include container-line;
+    right: 1rem;
+    top: 0;
+
+    display: none;
+    @media (min-width: $break-point-md) {
+        display: block;
     }
 }
